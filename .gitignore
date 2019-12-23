@@ -1,0 +1,6 @@
+/.vs
+/EntityFrameworkCoreSample/*.user
+/EntityFrameworkCoreSample/bin
+/EntityFrameworkCoreSample/obj
+/bin
+/obj

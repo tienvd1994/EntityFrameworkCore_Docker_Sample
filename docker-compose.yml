@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+        SA_PASSWORD: "Tien@123"
+        ACCEPT_EULA: "Y"
+        MSSQL_PID: Express 
+    ports:
+        - "1433:1433"
+  entityframeworkcoresample:
+    image: "aspnetcore/webapp"
+    build:
+      context: .
+      dockerfile: EntityFrameworkCoreSample/Dockerfile
+    depends_on:
+      - sqlserver
+    ports:
+        - "8080:80"
+    environment:
+      - DBHOST=192.168.99.100
+      - DBNAME=MvcMovieContext
+      - DBPORT=1433
+      - DBUSERNAME=sa
+      - DBPASSWORD=Tien@123
+      - ASPNETCORE_ENVIRONMENT=Development
